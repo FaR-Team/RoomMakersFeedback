@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Makers Feedback Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .form-header img {
+            max-width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .form-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        form {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        button[type="submit"]:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                max-width: 100%;
+            }
+
+            .form-header {
+                padding: 20px;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #closeAlert {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        #closeAlert:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <img src="Images/FaR-Logo.png" alt="FaR Team Logo">
+            <p>¡Valoramos tu opinión!</p>
+        </div>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="opinion">Danos una breve opinión sobre Room Makers</label>
+                <textarea id="opinion" name="opinion" placeholder="Compartí lo que pensás, copate..."></textarea>
+            </div>
+            <div class="button-container">
+                <button type="submit" id="submitButton" disabled>Enviar</button>
+            </div>
+        </form>
+    </div>
+      <script>
+          const form = document.getElementById('myForm');
+          const submitButton = document.getElementById('submitButton');
+          const requiredInputs = form.querySelectorAll('input[required]');
+
+          function checkFormValidity() {
+              let isValid = true;
+              requiredInputs.forEach(input => {
+                  if (!input.value.trim()) {
+                      isValid = false;
+                  }
+              });
+              submitButton.disabled = !isValid;
+          }
+
+          requiredInputs.forEach(input => {
+              input.addEventListener('input', checkFormValidity);
+          });
+
+          function showCustomAlert(message) {
+              const modal = document.getElementById('customAlert');
+              const alertMessage = document.getElementById('alertMessage');
+              const closeButton = document.getElementById('closeAlert');
+
+              alertMessage.textContent = message;
+              modal.style.display = 'block';
+
+              closeButton.onclick = function() {
+                  modal.style.display = 'none';
+              }
+
+              window.onclick = function(event) {
+                  if (event.target == modal) {
+                      modal.style.display = 'none';
+                  }
+              }
+          }
+
+          function submitToDiscord(formData) {
+              const webhookUrl = "https://discord.com/api/webhooks/1296287244545556490/qDRvxpkpdqQZhxLx_ZNbjbYSXgl5bFTtZFB4P241-oFKXq_23PxnnNPoH1BIWzII5nmW";
+
+              const fields = [
+                  { name: "Correo", value: formData.get('email'), inline: false },
+                  { name: "Nombre", value: formData.get('name'), inline: false },
+                  { name: "Opinión", value: formData.get('opinion') || "No escribió nada.", inline: false }
+              ];
+
+              const payload = {
+                  content: `Nueva respuesta al formulario de ` + formData.get('name') + ":",
+                  embeds: [
+                      {
+                          title: "Formulario de Room Makers",
+                          color: 3447003,
+                          fields: fields,
+                          timestamp: new Date().toISOString(),
+                          footer: {
+                              text: "F.A.R. Team",
+                          }
+                      }
+                  ]
+              };
+
+              fetch(webhookUrl, {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(payload)
+              })
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  console.log("Form submitted successfully");
+                  showCustomAlert("Formulario enviado con éxito!");
+                  form.reset(); // Reset the form after successful submission
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  showCustomAlert("Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.");
+              });
+          }
+
+          form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              const formData = new FormData(form);
+              submitToDiscord(formData);
+          });
+      </script>
+    <div id="customAlert" class="modal">
+        <div class="modal-content">
+            <p id="alertMessage"></p>
+            <button id="closeAlert">Cerrar</button>
+        </div>
+    </div>
+</body>
+</html>
