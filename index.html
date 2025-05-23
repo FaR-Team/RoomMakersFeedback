@@ -15,54 +15,57 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #FFF3E0 0%, #A5D6A7 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            color: #333;
         }
 
-        .form-container {
+        .linktree-container {
             width: 100%;
-            max-width: 500px;
-            background-color: #ffffff;
+            max-width: 550px;
+            background-color: #fdf4eb;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .form-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .form-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
             text-align: center;
         }
 
-        .form-header img {
-            max-width: 120px;
-            margin-bottom: 15px;
+        .banner {
+            padding: 30px 20px 10px 20px;
         }
 
-        .form-header h1 {
-            font-size: 24px;
+        .banner a {
+            display: block;
+            text-decoration: none;
+        }
+
+        .banner-image {
+            max-width: 70%;
+            height: auto;
+            display: block;
+            margin: 0 auto 15px auto;
+            border-radius: 10px;
+        }
+
+        .banner-title {
+            font-size: 22px;
             font-weight: 600;
+            color: #d88e49;
             margin-bottom: 5px;
         }
 
-        .form-header p {
+        .banner-subtitle {
             font-size: 14px;
-            opacity: 0.8;
+            color: #9bb03d;
         }
 
-        form {
+        .form-content-wrapper {
             padding: 30px;
+            text-align: left;
         }
 
         .form-group {
@@ -73,139 +76,163 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #333;
+            color: #555;
         }
 
         input[type="text"],
         input[type="email"],
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #e1e1e1;
+            padding: 14px;
+            border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
             transition: border-color 0.3s ease;
+            background-color: #fff;
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus {
-            border-color: #667eea;
+            border-color: #d88e49;
             outline: none;
+            box-shadow: 0 0 0 2px rgba(216, 142, 73, 0.2);
         }
 
         textarea {
             height: 120px;
             resize: vertical;
         }
-
+        
         .button-container {
             text-align: center;
+            margin-top: 20px;
         }
 
         button[type="submit"] {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: inline-block;
+            background-color: #d88e49;
             color: white;
-            border: none;
-            padding: 12px 30px;
+            text-decoration: none;
+            padding: 14px 30px;
             border-radius: 25px;
-            cursor: pointer;
             font-size: 16px;
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+            border: none;
+            cursor: pointer;
         }
 
         button[type="submit"]:hover {
-            transform: translateY(-2px);
+            background-color: #c97c3f;
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
         }
 
         button[type="submit"]:disabled {
-            background: #cccccc;
+            background-color: #ccc;
+            color: #888;
             cursor: not-allowed;
             box-shadow: none;
-        }
-
-        @media (max-width: 600px) {
-            .form-container {
-                max-width: 100%;
-            }
-
-            .form-header {
-                padding: 20px;
-            }
-
-            form {
-                padding: 20px;
-            }
+            transform: none;
         }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: #fdf4eb;
             margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            padding: 25px;
+            border: 1px solid #d88e49;
+            width: 90%;
             max-width: 400px;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         #closeAlert {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #d88e49;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 25px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: all 0.3s ease;
         }
 
         #closeAlert:hover {
+            background-color: #c97c3f;
             transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .linktree-container {
+                margin: 0;
+                border-radius: 15px;
+            }
+            .banner {
+                padding: 20px;
+            }
+            .banner-image {
+                max-width: 60%;
+            }
+            .banner-title {
+                font-size: 20px;
+            }
+            .form-content-wrapper {
+                padding: 20px;
+            }
+            button[type="submit"], #closeAlert {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <div class="form-header">
-            <img src="Images/longlogo.png" alt="FaR Team Logo">
-            <p>¡Valoramos tu opinión!</p>
+    <div class="linktree-container">
+        <header class="banner">
+            <img src="Images/longlogo.png" alt="FaR Team Logo" class="banner-image">
+            <h1 class="banner-title">Room Makers Feedback</h1>
+            <p class="banner-subtitle">¡Valoramos tu opinión!</p>
+        </header>
+        <div class="form-content-wrapper">
+            <form id="myForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="opinion">Danos una breve opinión sobre Room Makers</label>
+                    <textarea id="opinion" name="opinion" placeholder="Compartí lo que pensás, copate..."></textarea>
+                </div>
+                <div class="button-container">
+                    <button type="submit" id="submitButton" disabled>Enviar</button>
+                </div>
+            </form>
         </div>
-        <form id="myForm">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="opinion">Danos una breve opinión sobre Room Makers</label>
-                <textarea id="opinion" name="opinion" placeholder="Compartí lo que pensás, copate..."></textarea>
-            </div>
-            <div class="button-container">
-                <button type="submit" id="submitButton" disabled>Enviar</button>
-            </div>
-        </form>
     </div>
       <script>
           const form = document.getElementById('myForm');
@@ -282,7 +309,7 @@
                   }
                   console.log("Form submitted successfully");
                   showCustomAlert("Formulario enviado con éxito!");
-                  form.reset(); // Reset the form after successful submission
+                  form.reset();
               })
               .catch(error => {
                   console.error('Error:', error);
